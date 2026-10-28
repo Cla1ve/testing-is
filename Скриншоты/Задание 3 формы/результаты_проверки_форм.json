@@ -1,0 +1,537 @@
+[
+ {
+  "id": "REG-01",
+  "area": "Регистрация",
+  "field": "все поля",
+  "title": "Корректные данные",
+  "input": "корректные значения",
+  "expected": "OK",
+  "actual": "OK",
+  "errors": {},
+  "common": "",
+  "status": "PASS"
+ },
+ {
+  "id": "REG-02",
+  "area": "Регистрация",
+  "field": "все поля",
+  "title": "Пустая форма",
+  "input": {
+   "login": "",
+   "password": "",
+   "fio": "",
+   "phone": "",
+   "email": ""
+  },
+  "expected": "ERROR",
+  "actual": "ERROR",
+  "errors": {
+   "login": "Логин: от 6 до 30 символов, только латиница, цифры и _",
+   "password": "Пароль должен быть не короче 8 символов",
+   "fio": "ФИО: 2-3 слова кириллицей, например Иванов Иван Иванович",
+   "phone": "Телефон в формате 8(900)-123-45-67",
+   "email": "Введите корректный email"
+  },
+  "common": "",
+  "status": "PASS"
+ },
+ {
+  "id": "REG-03",
+  "area": "Регистрация",
+  "field": "логин",
+  "title": "5 символов (граница снизу)",
+  "input": {
+   "login": "abc12"
+  },
+  "expected": "ERROR",
+  "actual": "ERROR",
+  "errors": {
+   "login": "Логин: от 6 до 30 символов, только латиница, цифры и _"
+  },
+  "common": "",
+  "status": "PASS"
+ },
+ {
+  "id": "REG-04",
+  "area": "Регистрация",
+  "field": "логин",
+  "title": "6 символов (минимум)",
+  "input": {
+   "login": "abc123"
+  },
+  "expected": "OK",
+  "actual": "OK",
+  "errors": {},
+  "common": "",
+  "status": "PASS"
+ },
+ {
+  "id": "REG-05",
+  "area": "Регистрация",
+  "field": "логин",
+  "title": "30 символов (максимум)",
+  "input": {
+   "login": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "expected": "OK",
+  "actual": "OK",
+  "errors": {},
+  "common": "",
+  "status": "PASS"
+ },
+ {
+  "id": "REG-06",
+  "area": "Регистрация",
+  "field": "логин",
+  "title": "31 символ (граница сверху)",
+  "input": {
+   "login": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "expected": "ERROR",
+  "actual": "ERROR",
+  "errors": {
+   "login": "Логин: от 6 до 30 символов, только латиница, цифры и _"
+  },
+  "common": "",
+  "status": "PASS"
+ },
+ {
+  "id": "REG-07",
+  "area": "Регистрация",
+  "field": "логин",
+  "title": "Кириллица в логине",
+  "input": {
+   "login": "логин123"
+  },
+  "expected": "ERROR",
+  "actual": "ERROR",
+  "errors": {
+   "login": "Логин: от 6 до 30 символов, только латиница, цифры и _"
+  },
+  "common": "",
+  "status": "PASS"
+ },
+ {
+  "id": "REG-08",
+  "area": "Регистрация",
+  "field": "логин",
+  "title": "Пробел внутри логина",
+  "input": {
+   "login": "my login1"
+  },
+  "expected": "ERROR",
+  "actual": "ERROR",
+  "errors": {
+   "login": "Логин: от 6 до 30 символов, только латиница, цифры и _"
+  },
+  "common": "",
+  "status": "PASS"
+ },
+ {
+  "id": "REG-09",
+  "area": "Регистрация",
+  "field": "логин",
+  "title": "SQL-инъекция в логине",
+  "input": {
+   "login": "admin' OR 1=1--"
+  },
+  "expected": "ERROR",
+  "actual": "ERROR",
+  "errors": {
+   "login": "Логин: от 6 до 30 символов, только латиница, цифры и _"
+  },
+  "common": "",
+  "status": "PASS"
+ },
+ {
+  "id": "REG-10",
+  "area": "Регистрация",
+  "field": "логин",
+  "title": "Повторный логин (уже занят)",
+  "input": {
+   "login": "elmurat2027"
+  },
+  "expected": "ERROR",
+  "actual": "ERROR",
+  "errors": {
+   "login": "Такой логин уже занят"
+  },
+  "common": "",
+  "status": "PASS"
+ },
+ {
+  "id": "REG-11",
+  "area": "Регистрация",
+  "field": "пароль",
+  "title": "7 символов (граница снизу)",
+  "input": {
+   "password": "Pass123"
+  },
+  "expected": "ERROR",
+  "actual": "ERROR",
+  "errors": {
+   "password": "Пароль должен быть не короче 8 символов"
+  },
+  "common": "",
+  "status": "PASS"
+ },
+ {
+  "id": "REG-12",
+  "area": "Регистрация",
+  "field": "пароль",
+  "title": "8 символов (минимум)",
+  "input": {
+   "password": "Pass1234"
+  },
+  "expected": "OK",
+  "actual": "OK",
+  "errors": {},
+  "common": "",
+  "status": "PASS"
+ },
+ {
+  "id": "REG-13",
+  "area": "Регистрация",
+  "field": "пароль",
+  "title": "Пароль из 8 пробелов",
+  "input": {
+   "password": "        "
+  },
+  "expected": "ERROR",
+  "actual": "ERROR",
+  "errors": {
+   "password": "Пароль должен быть не короче 8 символов"
+  },
+  "common": "",
+  "status": "PASS"
+ },
+ {
+  "id": "REG-14",
+  "area": "Регистрация",
+  "field": "пароль",
+  "title": "100 символов",
+  "input": {
+   "password": "A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1"
+  },
+  "expected": "OK",
+  "actual": "OK",
+  "errors": {},
+  "common": "",
+  "status": "PASS"
+ },
+ {
+  "id": "REG-15",
+  "area": "Регистрация",
+  "field": "ФИО",
+  "title": "Латиница вместо кириллицы",
+  "input": {
+   "fio": "Ivan Ivanov"
+  },
+  "expected": "ERROR",
+  "actual": "ERROR",
+  "errors": {
+   "fio": "ФИО: 2-3 слова кириллицей, например Иванов Иван Иванович"
+  },
+  "common": "",
+  "status": "PASS"
+ },
+ {
+  "id": "REG-16",
+  "area": "Регистрация",
+  "field": "ФИО",
+  "title": "Одно слово",
+  "input": {
+   "fio": "Иванов"
+  },
+  "expected": "ERROR",
+  "actual": "ERROR",
+  "errors": {
+   "fio": "ФИО: 2-3 слова кириллицей, например Иванов Иван Иванович"
+  },
+  "common": "",
+  "status": "PASS"
+ },
+ {
+  "id": "REG-17",
+  "area": "Регистрация",
+  "field": "ФИО",
+  "title": "Три слова (максимум)",
+  "input": {
+   "fio": "Иванов Иван Иванович"
+  },
+  "expected": "OK",
+  "actual": "OK",
+  "errors": {},
+  "common": "",
+  "status": "PASS"
+ },
+ {
+  "id": "REG-18",
+  "area": "Регистрация",
+  "field": "ФИО",
+  "title": "Четыре слова",
+  "input": {
+   "fio": "Иванов Иван Иванович Младший"
+  },
+  "expected": "ERROR",
+  "actual": "ERROR",
+  "errors": {
+   "fio": "ФИО: 2-3 слова кириллицей, например Иванов Иван Иванович"
+  },
+  "common": "",
+  "status": "PASS"
+ },
+ {
+  "id": "REG-19",
+  "area": "Регистрация",
+  "field": "ФИО",
+  "title": "Цифры в ФИО",
+  "input": {
+   "fio": "Иванов 123"
+  },
+  "expected": "ERROR",
+  "actual": "ERROR",
+  "errors": {
+   "fio": "ФИО: 2-3 слова кириллицей, например Иванов Иван Иванович"
+  },
+  "common": "",
+  "status": "PASS"
+ },
+ {
+  "id": "REG-20",
+  "area": "Регистрация",
+  "field": "ФИО",
+  "title": "Двойная фамилия через дефис",
+  "input": {
+   "fio": "Петров-Водкин Иван"
+  },
+  "expected": "OK",
+  "actual": "OK",
+  "errors": {},
+  "common": "",
+  "status": "PASS"
+ },
+ {
+  "id": "REG-21",
+  "area": "Регистрация",
+  "field": "телефон",
+  "title": "Буквы вместо цифр (маска убирает их)",
+  "input": {
+   "phone": "abcdefghij"
+  },
+  "expected": "ERROR",
+  "actual": "ERROR",
+  "errors": {
+   "phone": "Телефон в формате 8(900)-123-45-67"
+  },
+  "common": "",
+  "status": "PASS"
+ },
+ {
+  "id": "REG-22",
+  "area": "Регистрация",
+  "field": "телефон",
+  "title": "Неполный номер",
+  "input": {
+   "phone": "8900123"
+  },
+  "expected": "ERROR",
+  "actual": "ERROR",
+  "errors": {
+   "phone": "Телефон в формате 8(900)-123-45-67"
+  },
+  "common": "",
+  "status": "PASS"
+ },
+ {
+  "id": "REG-23",
+  "area": "Регистрация",
+  "field": "телефон",
+  "title": "Корректный номер",
+  "input": {
+   "phone": "89001234567"
+  },
+  "expected": "OK",
+  "actual": "OK",
+  "errors": {},
+  "common": "",
+  "status": "PASS"
+ },
+ {
+  "id": "REG-24",
+  "area": "Регистрация",
+  "field": "email",
+  "title": "Без символа @",
+  "input": {
+   "email": "user.example.ru"
+  },
+  "expected": "ERROR",
+  "actual": "ERROR",
+  "errors": {
+   "email": "Введите корректный email"
+  },
+  "common": "",
+  "status": "PASS"
+ },
+ {
+  "id": "REG-25",
+  "area": "Регистрация",
+  "field": "email",
+  "title": "Без домена верхнего уровня",
+  "input": {
+   "email": "user@domain"
+  },
+  "expected": "ERROR",
+  "actual": "ERROR",
+  "errors": {
+   "email": "Введите корректный email"
+  },
+  "common": "",
+  "status": "PASS"
+ },
+ {
+  "id": "REG-26",
+  "area": "Регистрация",
+  "field": "email",
+  "title": "Повторный email",
+  "input": {
+   "email": "elmurat@example.ru"
+  },
+  "expected": "ERROR",
+  "actual": "ERROR",
+  "errors": {
+   "email": "Этот email уже зарегистрирован"
+  },
+  "common": "",
+  "status": "PASS"
+ },
+ {
+  "id": "REG-27",
+  "area": "Регистрация",
+  "field": "email",
+  "title": "Корректный email с цифрами и плюсом",
+  "input": {
+   "email": "ivan+test1@example.ru"
+  },
+  "expected": "OK",
+  "actual": "OK",
+  "errors": {},
+  "common": "",
+  "status": "PASS"
+ },
+ {
+  "id": "AUT-01",
+  "area": "Вход",
+  "field": "логин и пароль",
+  "title": "Вход обычного пользователя",
+  "input": {
+   "login": "elmurat2027",
+   "password": "***********"
+  },
+  "expected": "OK",
+  "actual": "OK",
+  "errors": {},
+  "common": "",
+  "where": "/dashboard",
+  "status": "PASS"
+ },
+ {
+  "id": "AUT-02",
+  "area": "Вход",
+  "field": "логин и пароль",
+  "title": "Неверный пароль",
+  "input": {
+   "login": "elmurat2027",
+   "password": "**********"
+  },
+  "expected": "ERROR",
+  "actual": "ERROR",
+  "errors": {},
+  "common": "Неверный логин или пароль",
+  "where": "/login",
+  "status": "PASS"
+ },
+ {
+  "id": "AUT-03",
+  "area": "Вход",
+  "field": "логин и пароль",
+  "title": "Несуществующий логин",
+  "input": {
+   "login": "no_such_user",
+   "password": "***********"
+  },
+  "expected": "ERROR",
+  "actual": "ERROR",
+  "errors": {},
+  "common": "Неверный логин или пароль",
+  "where": "/login",
+  "status": "PASS"
+ },
+ {
+  "id": "AUT-04",
+  "area": "Вход",
+  "field": "логин и пароль",
+  "title": "Пустые поля",
+  "input": {
+   "login": "",
+   "password": ""
+  },
+  "expected": "ERROR",
+  "actual": "ERROR",
+  "errors": {
+   "login": "Введите логин",
+   "password": "Введите пароль"
+  },
+  "common": "",
+  "where": "/login",
+  "status": "PASS"
+ },
+ {
+  "id": "AUT-05",
+  "area": "Вход",
+  "field": "логин и пароль",
+  "title": "SQL-инъекция в логине",
+  "input": {
+   "login": "' OR '1'='1' --",
+   "password": "*"
+  },
+  "expected": "ERROR",
+  "actual": "ERROR",
+  "errors": {},
+  "common": "Неверный логин или пароль",
+  "where": "/login",
+  "status": "PASS"
+ },
+ {
+  "id": "AUT-06",
+  "area": "Вход",
+  "field": "логин и пароль",
+  "title": "Логин другим регистром",
+  "input": {
+   "login": "ELMURAT2027",
+   "password": "***********"
+  },
+  "expected": "ERROR",
+  "actual": "ERROR",
+  "errors": {},
+  "common": "Неверный логин или пароль",
+  "where": "/login",
+  "status": "PASS"
+ },
+ {
+  "id": "AUT-07",
+  "area": "Вход",
+  "field": "логин и пароль",
+  "title": "Вход администратора",
+  "input": {
+   "login": "Conf2027",
+   "password": "******"
+  },
+  "expected": "OK",
+  "actual": "OK",
+  "errors": {},
+  "common": "",
+  "where": "/admin",
+  "status": "PASS"
+ }
+]
